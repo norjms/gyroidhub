@@ -1,0 +1,330 @@
+/*
+ * ArtisanHub's glass look over GyroidVault (gyroidhub). Loaded after GyroidVault's own stylesheet: its design
+ * tokens are set to the hub's and the installer's (frontend/src/lib/theme.css in artisan-hub-installer), and
+ * the surfaces become glass cards over the dark blue gradient, so moving from the hub to the model library
+ * looks like one app. Fonts are named, never downloaded, as in the installer.
+ */
+
+html,
+html[data-theme],
+html[data-accent] {
+  /* ArtisanHub's tokens */
+  --ahi-page: #172028;
+  --ahi-gradient: radial-gradient(80% 75% at 55% 35%, #3f566a 0%, #273642 50%, #172028 100%);
+  --ahi-text: #f1f6fa;
+  --ahi-text-2: rgba(236, 243, 248, 0.85);
+  --ahi-text-3: rgba(236, 243, 248, 0.8);
+  --ahi-link: #bfe6ff;
+  --ahi-accent: #8fd3ff;
+  --ahi-on-accent: #1d2a34;
+  --ahi-glass: rgba(255, 255, 255, 0.08);
+  --ahi-glass-line: rgba(255, 255, 255, 0.16);
+  --ahi-panel: rgba(12, 20, 26, 0.24);
+  --ahi-panel-line: rgba(255, 255, 255, 0.12);
+  --ahi-field: rgba(20, 30, 38, 0.5);
+  --ahi-field-line: rgba(255, 255, 255, 0.2);
+  --ahi-blur: blur(24px);
+
+  /* GyroidVault's tokens, mapped onto them */
+  --font: Inter, system-ui, sans-serif;
+  --font-family: Inter, system-ui, sans-serif;
+  --radius-sm: 10px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 22px;
+  --bg-primary: transparent;
+  --bg-color: transparent;
+  --bg-dark: var(--ahi-panel);
+  --bg-secondary: var(--ahi-glass);
+  --bg-tertiary: var(--ahi-panel);
+  --bg-card: var(--ahi-glass);
+  --bg-card-hover: rgba(255, 255, 255, 0.12);
+  --bg-input: var(--ahi-field);
+  --bg-navbar: var(--ahi-glass);
+  --border: var(--ahi-glass-line);
+  --border-color: var(--ahi-glass-line);
+  --border-hover: rgba(255, 255, 255, 0.28);
+  --border-focus: var(--ahi-accent);
+  --text: var(--ahi-text);
+  --text-primary: var(--ahi-text);
+  --text-secondary: var(--ahi-text-2);
+  --text-muted: var(--ahi-text-3);
+  --accent-cyan: var(--ahi-accent);
+  --accent-primary: var(--ahi-accent);
+  --accent-gradient: var(--ahi-accent);
+  --success: #9be28f;
+  --warning: #ffb38a;
+  --error: #e66767;
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.35);
+  --shadow-glow: none;
+  color-scheme: dark;
+}
+
+html,
+body {
+  background: var(--ahi-gradient) fixed;
+  background-color: var(--ahi-page);
+  color: var(--ahi-text);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+.page-title,
+.modal-title {
+  font-family: 'Space Grotesk', Inter, system-ui, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+a {
+  color: var(--ahi-link);
+}
+
+/* The page: a rail and a main card, with the installer's gutters. */
+.app-layout {
+  gap: 24px;
+  padding: 28px 36px;
+  box-sizing: border-box;
+}
+
+.sidebar,
+.app-topbar,
+.main-content,
+.app-footer,
+.model-card,
+.collection-card,
+.stat-card,
+.glass-panel,
+.toggle-card,
+.view-mode-card,
+.modal,
+.settings-nav-sidebar {
+  background: var(--ahi-glass) !important;
+  border: 1px solid var(--ahi-glass-line) !important;
+  backdrop-filter: var(--ahi-blur);
+  -webkit-backdrop-filter: var(--ahi-blur);
+  box-shadow: none !important;
+}
+
+/* The rail sits in the page's flow, as the installer's does, instead of fixed at the window's edge. */
+.sidebar {
+  flex: none;
+  width: 280px;
+  border-radius: 22px;
+  height: calc(100vh - 56px);
+  position: sticky;
+  top: 28px;
+  bottom: auto;
+  left: auto;
+}
+
+.sidebar.collapsed {
+  width: 72px;
+}
+
+.app-main-wrapper {
+  margin-left: 0 !important;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+  min-height: calc(100vh - 56px);
+}
+
+.app-topbar,
+.app-footer {
+  border-radius: 18px;
+  position: static;
+}
+
+.main-content {
+  border-radius: 22px;
+}
+
+.model-card,
+.collection-card,
+.stat-card,
+.glass-panel,
+.toggle-card,
+.view-mode-card {
+  border-radius: 18px;
+}
+
+.model-card:hover,
+.collection-card:hover {
+  border-color: rgba(255, 255, 255, 0.28) !important;
+}
+
+.modal {
+  border-radius: 22px;
+  background: rgba(30, 44, 56, 0.92) !important;
+}
+
+.modal-overlay {
+  background: rgba(10, 16, 22, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* The brand, as the installer's rail shows it. */
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ahi-text);
+}
+
+.ahi-tile {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-family: 'Space Grotesk', Inter, system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--ahi-on-accent);
+  background: var(--ahi-accent);
+}
+
+.ahi-brand {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.ahi-brand b {
+  font-family: 'Space Grotesk', Inter, system-ui, sans-serif;
+  font-size: 17px;
+}
+
+.ahi-brand small {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--ahi-text-3);
+}
+
+/* Navigation */
+.sidebar-section-title {
+  color: var(--ahi-text-3);
+  letter-spacing: 0.12em;
+  font-size: 11px;
+}
+
+.sidebar-nav-item {
+  border-radius: 12px;
+  color: var(--ahi-text-2);
+}
+
+.sidebar-nav-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--ahi-text);
+}
+
+.sidebar-nav-item.active {
+  background: rgba(143, 211, 255, 0.16);
+  color: var(--ahi-text);
+  box-shadow: inset 0 0 0 1px rgba(143, 211, 255, 0.35);
+}
+
+/* Buttons, as the installer's */
+.btn {
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.btn-primary {
+  background: var(--ahi-accent) !important;
+  border: 1px solid var(--ahi-accent) !important;
+  color: var(--ahi-on-accent) !important;
+}
+
+.btn-primary:hover {
+  background: #b4e2ff !important;
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid var(--ahi-glass-line) !important;
+  color: var(--ahi-text) !important;
+}
+
+.btn-secondary:hover,
+.btn-icon:hover {
+  background: rgba(255, 255, 255, 0.14) !important;
+}
+
+/* Fields */
+input,
+select,
+textarea {
+  background: var(--ahi-field) !important;
+  border: 1px solid var(--ahi-field-line) !important;
+  border-radius: 10px !important;
+  color: var(--ahi-text) !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--ahi-page), 0 0 0 4px var(--ahi-accent) !important;
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--ahi-page), 0 0 0 4px var(--ahi-accent);
+}
+
+/* The 3D viewer sits on a panel, darker than the card. */
+canvas {
+  border-radius: 14px;
+}
+
+/* One theme and one accent: the pickers, the theme toggle and the update badge have nothing to choose. */
+#theme-toggle,
+#update-badge,
+.sidebar-kofi-card,
+[onclick*="setTheme"],
+[onclick*="setAccent"],
+[onclick*="openWhatsNew"] {
+  display: none !important;
+}
+
+/* The hub is the only writer of the model library, which is mounted here read-only: models are added,
+   renamed and removed in the hub, so the actions that would write to it are not offered. */
+[onclick*="showCreateModel"],
+[onclick*="showUploadFiles"],
+[onclick*="showCreateVersion"] {
+  display: none !important;
+}
+
+.app-footer .footer-content {
+  color: var(--ahi-text-3);
+}
+
+.app-footer a {
+  color: var(--ahi-link);
+}
+
+/* On a phone the rail is GyroidVault's drawer again, over the page. */
+@media (max-width: 900px) {
+  .app-layout {
+    padding: 12px 16px;
+    gap: 0;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 12px;
+    bottom: 12px;
+    left: 12px;
+    height: auto;
+  }
+}
