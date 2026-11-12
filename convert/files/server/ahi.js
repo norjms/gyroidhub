@@ -1,7 +1,9 @@
 // ArtisanHub's additions to GyroidVault, copied in by convert/convert.py (gyroidhub).
 //
-// - AHI_BASE_PATH: the path the proxy serves this app under (for example /apps/models). The proxy strips it
-//   before forwarding, so routes stay at the root; only redirects to the browser need it in front.
+// - AHI_BASE_PATH: the path this app is served under (for example /apps/models). A proxy may forward the path
+//   whole, like every other ArtisanHub app, or strip it: requests under it are served from the root either
+//   way, the bare path is sent to its trailing slash (so the page's relative URLs resolve under it), and
+//   redirects to the browser get it in front.
 // - AHI_SETTING_<KEY>=value: written to system_settings at every start, so the installer, not a person in
 //   the settings page, decides sign-in and features (key lowercased: AHI_SETTING_OIDC_ENABLED -> oidc_enabled).
 // - AHI_SSO=1: the browser is told to sign in through the OIDC provider without showing a login dialog.
@@ -24,6 +26,9 @@ function prefixed(url) {
 function routes(app) {
   if (BASE) {
     app.use((req, res, next) => {
+      const [pathname, query] = req.url.split('?');
+      if (pathname === BASE) return res.redirect(301, BASE + '/' + (query ? '?' + query : ''));
+      if (pathname.startsWith(BASE + '/')) req.url = req.url.slice(BASE.length);
       const redirect = res.redirect.bind(res);
       res.redirect = function ahiRedirect(a, b) {
         if (typeof a === 'number') return redirect(a, prefixed(b));

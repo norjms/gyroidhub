@@ -30,7 +30,7 @@ The installer runs it. The settings it uses:
 
 | Variable | Meaning |
 |---|---|
-| `AHI_BASE_PATH` | The path the proxy serves it under, such as `/apps/models`. The proxy strips the path before forwarding. |
+| `AHI_BASE_PATH` | The path it is served under, such as `/apps/models`. A proxy may forward the path whole or strip it. |
 | `AHI_SSO=1` | Sign in through the OIDC provider directly, without a login dialog. |
 | `AHI_SETTING_<KEY>` | Written to GyroidVault's settings at every start, for example `AHI_SETTING_OIDC_ISSUER_URL`. |
 | `LIBRARY_PATH` | The model library, `/library` by default. |
