@@ -1,8 +1,9 @@
 /*
  * ArtisanHub's glass look over GyroidVault (gyroidhub). Loaded after GyroidVault's own stylesheet: its design
- * tokens are set to the hub's and the installer's (frontend/src/lib/theme.css in artisan-hub-installer), and
- * the surfaces become glass cards over the dark blue gradient, so moving from the hub to the model library
- * looks like one app. Fonts are named, never downloaded, as in the installer.
+ * tokens are set to the shared ArtisanHub UI package's (artisanhub-ui 0.1.0, as in the installer's
+ * frontend/src/lib/theme.css), and the surfaces become glass cards over the dark blue gradient, so moving from
+ * the hub to the model library looks like one app. Fonts are named, never downloaded, as in the installer:
+ * Manrope (text), Sora (titles) and JetBrains Mono (code) when the machine has them, the system font otherwise.
  */
 
 html,
@@ -13,7 +14,11 @@ html[data-accent] {
   --ahi-gradient: radial-gradient(80% 75% at 55% 35%, #3f566a 0%, #273642 50%, #172028 100%);
   --ahi-text: #f1f6fa;
   --ahi-text-2: rgba(236, 243, 248, 0.85);
-  --ahi-text-3: rgba(236, 243, 248, 0.8);
+  --ahi-text-3: rgba(236, 243, 248, 0.85);
+  --ahi-font-ui: Manrope, system-ui, sans-serif;
+  --ahi-font-display: Sora, Manrope, system-ui, sans-serif;
+  --ahi-font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --ahi-chip-underlay: rgba(12, 20, 26, 0.3);
   --ahi-link: #bfe6ff;
   --ahi-accent: #8fd3ff;
   --ahi-on-accent: #1d2a34;
@@ -26,8 +31,9 @@ html[data-accent] {
   --ahi-blur: blur(24px);
 
   /* GyroidVault's tokens, mapped onto them */
-  --font: Inter, system-ui, sans-serif;
-  --font-family: Inter, system-ui, sans-serif;
+  --font: var(--ahi-font-ui);
+  --font-family: var(--ahi-font-ui);
+  --font-mono: var(--ahi-font-mono);
   --radius-sm: 10px;
   --radius-md: 12px;
   --radius-lg: 18px;
@@ -76,7 +82,7 @@ h2,
 h3,
 .page-title,
 .modal-title {
-  font-family: 'Space Grotesk', Inter, system-ui, sans-serif;
+  font-family: var(--ahi-font-display);
   letter-spacing: -0.01em;
 }
 
@@ -186,7 +192,7 @@ a {
   border-radius: 12px;
   display: grid;
   place-items: center;
-  font-family: 'Space Grotesk', Inter, system-ui, sans-serif;
+  font-family: var(--ahi-font-display);
   font-weight: 700;
   font-size: 15px;
   color: var(--ahi-on-accent);
@@ -200,7 +206,7 @@ a {
 }
 
 .ahi-brand b {
-  font-family: 'Space Grotesk', Inter, system-ui, sans-serif;
+  font-family: var(--ahi-font-display);
   font-size: 17px;
 }
 
