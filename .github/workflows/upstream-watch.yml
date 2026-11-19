@@ -59,7 +59,7 @@ jobs:
           git commit -qam "GyroidVault $TAG"
           git push -q origin "$branch"
           if [ "$OUTCOME" = success ]; then
-            body="GyroidVault $TAG ($SHA) is released. convert/convert.py applies to it cleanly. Build it with build/release.sh gyroidhub in artisan-hub-deploy, check it, then merge."
+            body="GyroidVault $TAG ($SHA) is released. convert/convert.py applies to it cleanly. Build it with build/release.sh gyroidhub in openprinthq-deploy, check it, then merge."
           else
             body="GyroidVault $TAG ($SHA) is released, and convert/convert.py does not apply to it yet:"$'\n\n```\n'"$(tail -20 /tmp/convert.log)"$'\n```\n\n'"Fix the anchors on this branch, then build and check it."
           fi
