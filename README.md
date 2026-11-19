@@ -1,8 +1,8 @@
 # gyroidhub
 
-ArtisanHub's model library: [GyroidVault](https://github.com/TeeCodeDev/GyroidVault), converted to run inside
-an ArtisanHub installation. It browses the hub's model library with a 3D preview, under the hub's name at
-`/apps/models/`, signed in through the hub's own sign-in, and looks like the rest of ArtisanHub.
+OpenPrintHQ's model library: [GyroidVault](https://github.com/TeeCodeDev/GyroidVault), converted to run inside
+an OpenPrintHQ installation. It browses the hub's model library with a 3D preview, under the hub's name at
+`/apps/models/`, signed in through the hub's own sign-in, and looks like the rest of OpenPrintHQ.
 
 This repository holds no copy of GyroidVault. It holds the steps that turn a GyroidVault **release** into
 gyroidhub, and the build applies them to the release named in `upstream.env`:
@@ -10,7 +10,7 @@ gyroidhub, and the build applies them to the release named in `upstream.env`:
 | File | What it is |
 |---|---|
 | `upstream.env` | The GyroidVault release built: its tag and the commit the tag must point at. |
-| `convert/convert.py` | The conversion, as a script: relative URLs for a base path, sign-in and settings from the environment, the ArtisanHub look and name. Each edit names the exact text it changes and stops the build if a release no longer has it. |
+| `convert/convert.py` | The conversion, as a script: relative URLs for a base path, sign-in and settings from the environment, the OpenPrintHQ look and name. Each edit names the exact text it changes and stops the build if a release no longer has it. |
 | `convert/files/` | Files added to the release: `server/ahi.js` and `public/css/ahi-theme.css`. |
 | `Dockerfile` | Fetches the release, checks its commit, runs the conversion, and builds the image. |
 | `.github/workflows/upstream-watch.yml` | Checks daily for a new GyroidVault release and opens a pull request moving `upstream.env` to it, saying whether the conversion still applies. |
