@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Turn a GyroidVault release into gyroidhub: ArtisanHub's model library.
+"""Turn a GyroidVault release into gyroidhub: OpenPrintHQ's model library.
 
     python3 convert/convert.py <GyroidVault source tree>
 
 The same steps run for every release, with no judgement involved:
 
-1. Base path. GyroidVault expects to be the root of its own address. ArtisanHub serves it under the hub's
+1. Base path. GyroidVault expects to be the root of its own address. OpenPrintHQ serves it under the hub's
    name at a path (/apps/models/), with the proxy stripping that path, so every absolute URL the browser
    is given (pages, scripts, API calls, file links) is made relative to the page, and redirects from the
    server get the path in front (server/ahi.js, AHI_BASE_PATH).
@@ -13,8 +13,8 @@ The same steps run for every release, with no judgement involved:
    the installer turns on OIDC with Authelia, turns off local registration and requires a sign-in. With
    AHI_SSO=1 the login dialog sends people straight to Authelia, so someone signed in to the hub is signed
    in here without seeing a second sign-in.
-3. Look. ArtisanHub's glass theme (public/css/ahi-theme.css) is loaded after GyroidVault's own stylesheet,
-   the theme and accent pickers are fixed to it, and the brand reads ArtisanHub. The update check and the
+3. Look. OpenPrintHQ's glass theme (public/css/ahi-theme.css) is loaded after GyroidVault's own stylesheet,
+   the theme and accent pickers are fixed to it, and the brand reads OpenPrintHQ. The update check and the
    donation links of the upstream project are taken out; its name, licence and source stay in the footer and
    the About panel, as the AGPL asks.
 
@@ -31,7 +31,7 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-DISPLAY = "ArtisanHub Models"
+DISPLAY = "OpenPrintHQ Models"
 SOURCE = "https://github.com/norjms/gyroidhub"
 UPSTREAM = "https://github.com/TeeCodeDev/GyroidVault"
 
@@ -101,7 +101,7 @@ def server(root: Path) -> None:
 
 def page(root: Path) -> None:
     html = "public/index.html"
-    # One theme: ArtisanHub's, whatever the browser had saved.
+    # One theme: OpenPrintHQ's, whatever the browser had saved.
     edit(root, html, "const t = localStorage.getItem('gv_theme') || 'glass';", "const t = 'glass';")
     edit(root, html, "const a = localStorage.getItem('gv_accent') || 'blue';", "const a = 'blue';")
     sub(root, html, r'<meta name="description" content="[^"]*">',
@@ -112,10 +112,12 @@ def page(root: Path) -> None:
     # Fonts are named, never downloaded: an installation may have no internet.
     sub(root, html, r'\s*<link href="https://fonts\.googleapis\.com/[^"]*" rel="stylesheet">', "")
     sub(root, html, r'(<script src="/js/api\.js[^"]*"></script>)', r'<script src="/ahi-config.js"></script>\n  \1')
-    # The brand: ArtisanHub's tile and name in place of the logo.
+    # The brand: the OpenPrintHQ mark (openprinthq-ui's "mark" icon) and name in place of the logo.
     sub(root, html, r'<div class="nav-logo"[^>]*>\s*<img[^>]*>\s*</div>\s*<span class="nav-title"[^>]*>GyroidVault</span>',
-        '<span class="ahi-tile" aria-hidden="true">AH</span>\n'
-        '          <span class="nav-title ahi-brand"><b>ArtisanHub</b><small>Models</small></span>')
+        '<span class="ahi-tile" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" '
+        'stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'
+        '<path d="M12 2.5 20.5 7.3v9.4L12 21.5l-8.5-4.8V7.3z"/><path d="M8 16h8M9.5 12.8h5M11 9.6h2"/></svg></span>\n'
+        '          <span class="nav-title ahi-brand"><b>OpenPrintHQ</b><small>Models</small></span>')
     sub(root, html, r'\s*<!-- Support on Ko-fi -->\s*<a href="https://ko-fi\.com/[^"]*"[^>]*>.*?</a>', "")
     # The footer names what this is built on, with its licence and both sources (AGPL section 13).
     sub(root, html, r'<div class="footer-content">.*?</div>\s*</div>\s*</footer>',
@@ -136,7 +138,7 @@ def script(root: Path) -> None:
     # Signed in through Authelia: no second sign-in screen.
     edit(root, app, "showLogin() { ",
          "showLogin() { if (window.AHI && window.AHI.sso) { window.location.href = '/api/auth/oidc/login'; return; } ")
-    # The upstream project's release announcements are not ArtisanHub's: never opened on its own.
+    # The upstream project's release announcements are not OpenPrintHQ's: never opened on its own.
     edit(root, app, "checkWhatsNew() {", "checkWhatsNew() {\n    return;")
     # The name people read where the app names itself. GyroidVault's About panel keeps its name: it says what
     # this is built on.
