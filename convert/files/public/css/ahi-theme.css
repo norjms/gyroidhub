@@ -1,6 +1,6 @@
 /*
- * ArtisanHub's glass look over GyroidVault (gyroidhub). Loaded after GyroidVault's own stylesheet: its design
- * tokens are set to the shared ArtisanHub UI package's (artisanhub-ui 0.1.0, as in the installer's
+ * OpenPrintHQ's glass look over GyroidVault (gyroidhub). Loaded after GyroidVault's own stylesheet: its design
+ * tokens are set to the shared OpenPrintHQ UI package's (openprinthq-ui 0.1.0, as in the installer's
  * frontend/src/lib/theme.css), and the surfaces become glass cards over the dark blue gradient, so moving from
  * the hub to the model library looks like one app. Fonts are named, never downloaded, as in the installer:
  * Manrope (text), Sora (titles) and JetBrains Mono (code) when the machine has them, the system font otherwise.
@@ -9,7 +9,7 @@
 html,
 html[data-theme],
 html[data-accent] {
-  /* ArtisanHub's tokens */
+  /* OpenPrintHQ's tokens */
   --ahi-page: #172028;
   --ahi-gradient: radial-gradient(80% 75% at 55% 35%, #3f566a 0%, #273642 50%, #172028 100%);
   --ahi-text: #f1f6fa;

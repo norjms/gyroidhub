@@ -1,4 +1,4 @@
-# gyroidhub: a GyroidVault release, converted for ArtisanHub by convert/convert.py.
+# gyroidhub: a GyroidVault release, converted for OpenPrintHQ by convert/convert.py.
 #
 # The release comes from upstream.env (passed as build arguments by artisan-hub-deploy's build/release.sh):
 # the tag is fetched and must be the commit named there, so a moved tag fails the build instead of changing
@@ -30,7 +30,7 @@ COPY LICENSE /app/LICENSE.gyroidhub
 RUN mkdir -p /app/data/uploads
 ENV NODE_ENV=production PORT=3000 LIBRARY_PATH=/library
 LABEL org.opencontainers.image.title="gyroidhub" \
-      org.opencontainers.image.description="ArtisanHub's model library, built from GyroidVault ${GYROIDVAULT_VERSION}" \
+      org.opencontainers.image.description="OpenPrintHQ's model library, built from GyroidVault ${GYROIDVAULT_VERSION}" \
       org.opencontainers.image.licenses="AGPL-3.0-only" \
       org.opencontainers.image.version="${GYROIDVAULT_VERSION}"
 EXPOSE 3000

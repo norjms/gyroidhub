@@ -1,7 +1,7 @@
-// ArtisanHub's additions to GyroidVault, copied in by convert/convert.py (gyroidhub).
+// OpenPrintHQ's additions to GyroidVault, copied in by convert/convert.py (gyroidhub).
 //
 // - AHI_BASE_PATH: the path this app is served under (for example /apps/models). A proxy may forward the path
-//   whole, like every other ArtisanHub app, or strip it: requests under it are served from the root either
+//   whole, like every other OpenPrintHQ app, or strip it: requests under it are served from the root either
 //   way, the bare path is sent to its trailing slash (so the page's relative URLs resolve under it), and
 //   redirects to the browser get it in front.
 // - AHI_SETTING_<KEY>=value: written to system_settings at every start, so the installer, not a person in
@@ -56,7 +56,7 @@ function seed() {
   if (keys.length) {
     saveDb(true);
     // Names only: some values, such as the OIDC client secret, are secrets.
-    console.log('[ArtisanHub] settings from the environment: ' + keys.sort().join(', '));
+    console.log('[OpenPrintHQ] settings from the environment: ' + keys.sort().join(', '));
   }
 }
 
@@ -66,9 +66,9 @@ function scan(reason) {
     const { startScanAsync } = require('./utils/library');
     const res = startScanAsync(LIBRARY_PATH);
     const busy = res && res.alreadyRunning ? ': one is already running' : '';
-    console.log('[ArtisanHub] library scan (' + reason + ')' + busy);
+    console.log('[OpenPrintHQ] library scan (' + reason + ')' + busy);
   } catch (e) {
-    console.error('[ArtisanHub] library scan failed to start: ' + e.message);
+    console.error('[OpenPrintHQ] library scan failed to start: ' + e.message);
   }
 }
 
