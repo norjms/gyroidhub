@@ -1,6 +1,6 @@
 # gyroidhub: a GyroidVault release, converted for OpenPrintHQ by convert/convert.py.
 #
-# The release comes from upstream.env (passed as build arguments by artisan-hub-deploy's build/release.sh):
+# The release comes from upstream.env (passed as build arguments by openprinthq-deploy's build/release.sh):
 # the tag is fetched and must be the commit named there, so a moved tag fails the build instead of changing
 # what is built.
 

@@ -19,7 +19,7 @@ gyroidhub, and the build applies them to the release named in `upstream.env`:
 
 1. A new release appears; the watch opens a pull request `GyroidVault vX.Y.Z`.
 2. If it says the conversion failed, fix the named anchor in `convert/convert.py` on that branch.
-3. Build both architectures with `build/release.sh gyroidhub <branch>` in artisan-hub-deploy, open it, and
+3. Build both architectures with `build/release.sh gyroidhub <branch>` in openprinthq-deploy, open it, and
    merge the pull request. The installer then pins the new image by digest.
 
 Only published releases are taken; pre-releases, drafts, branches and nightly builds never are.
